@@ -3,19 +3,29 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>tout les chambres</title>
-<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 <body>
-<h1> Liste des clients de la base </h1>
-<div class="container marges">
+<div class="container marges mt-4">
+ <div class="row">
+    <div class="col-10">
+<h1> Liste des chambres de la base </h1>
+</div>
+<div class="col">
+<a th:href="@{addChambre}">
+<button type="button" class="btn btn-outline-primary mt-2">Ajouter chambre</button>
+</a>
+</div>
+</div>
 <table class="table table-striped">
 <tr>
-<th>ID</th><th>numero</th><th>capacité</th>
+<th>ID</th><th>numero</th><th>capacite</th><th></th><th></th>
 </tr>
 <tr th:each="c:${liste}">
 <td th:text="${c.id}"></td>
 <td th:text="${c.numero}"></td>
 <td th:text="${c.capacite}"></td>
+<td><a th:href="@{afficherChambre(id=${c.id})}"><button type="button" class="btn btn-secondary">modifier</button></a> </td>
 </tr>
 </table>
 </body>

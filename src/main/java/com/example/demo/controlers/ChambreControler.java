@@ -1,8 +1,10 @@
 package com.example.demo.controlers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-
 import com.example.demo.dao.Cambre;
 import com.example.demo.entities.Chambre;
 
@@ -27,13 +27,13 @@ public class ChambreControler {
 	public String afficherChambres(Model model) {
 		List<Chambre> liste = cr.findAll();
 		model.addAttribute("liste",liste);
-		return "tous_chambres.html";
+		return "tous-chambres.html";
 	}
 	@RequestMapping(value="/addChambre", method=RequestMethod.GET)
 	public String ajoutChambre(Model model) {
 		Chambre ch = new Chambre();
 		model.addAttribute("c",ch);
-		return "ajouter_chambre.html";
+		return "ajout-chambre.html";
 	}
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String saveChambret(@Valid Chambre c, BindingResult bindingResult, Model model){		
@@ -43,10 +43,15 @@ public class ChambreControler {
 			
 			return "redirect:addChambre";
 		}
-		cr.save(c);
-		return "redirect:liste";
-		
-				
+		List<Chambre> kr =cr.findByNumero(c.getNumero());
+		if (kr.isEmpty()) {
+			cr.save(c);
+			
+		}else {
+			String msg ="la chambre existe deja";
+			model.addAttribute("error", msg);
+		}
+		return "redirect:liste";			
 	}
 	
 	@RequestMapping(value="/suprimer")
@@ -55,5 +60,18 @@ public class ChambreControler {
 		
 		return "redirect:liste";		
 	}
+	@RequestMapping(value="/afficherChambre", method=RequestMethod.GET)
+	public String afficherChambre(Model model,@RequestParam(name="id", defaultValue="1")long id) {
+		Optional<Chambre> c = cr.findById(id);
+		model.addAttribute("chambre", c);		
+		return "afficher_chambre";		
+	}
+	@RequestMapping(value="/modifier", method=RequestMethod.POST)
+	public String modifierClient(Model model, Chambre c) {
+		cr.save(c);
+		
+		return "redirect:liste";		
+	}	
+	
 	
 }

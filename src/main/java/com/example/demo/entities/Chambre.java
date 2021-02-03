@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -18,6 +19,7 @@ import lombok.NoArgsConstructor;
 public class Chambre {
 	 @Id
 	 @Column(name = "chambre_id", nullable = false)
+	 @GeneratedValue
      private long id;
 	 @Basic
 	 @Column(name = "numero", nullable = false)
