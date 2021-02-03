@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>tout les chambres</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+</head>
+<body>
+<h1> Liste des clients de la base </h1>
+<div class="container marges">
+<table class="table table-striped">
+<tr>
+<th>ID</th><th>numero</th><th>capacité</th>
+</tr>
+<tr th:each="c:${liste}">
+<td th:text="${c.id}"></td>
+<td th:text="${c.numero}"></td>
+<td th:text="${c.capacite}"></td>
+</tr>
+</table>
+</body>
+</html>
