@@ -28,8 +28,33 @@ public class Chambre {
 	 @Column(name = "capacite", nullable = false)
 	 private int capacite ;
 	 @OneToMany(mappedBy = "chambre")
-	 private Collection<Lit> lits ; 
-	 
+	 private Collection<Lit> lits ;
+	public int getNumero() {
+		// TODO Auto-generated method stub
+		return this.numero;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public int getCapacite() {
+		return capacite;
+	}
+	public void setCapacite(int capacite) {
+		this.capacite = capacite;
+	}
+	public Collection<Lit> getLits() {
+		return lits;
+	}
+	public void setLits(Collection<Lit> lits) {
+		this.lits = lits;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
+	} 
+	
 	 
 	 
 }

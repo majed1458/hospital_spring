@@ -17,6 +17,8 @@ import com.example.demo.dao.Cambre;
 import com.example.demo.entities.Chambre;
 
 @Controller
+
+
 @RequestMapping(value="/chambre")
 public class ChambreControler {
 	@Autowired
@@ -55,7 +57,7 @@ public class ChambreControler {
 	}
 	
 	@RequestMapping(value="/suprimer")
-	public String suprimer_chambre(Model model, @RequestParam(name="id_chambre", defaultValue="0")long id){
+	public String suprimer_chambre(Model model, @RequestParam(name="id", defaultValue="0")long id){
 		cr.deleteById(id);
 		
 		return "redirect:liste";		
@@ -64,7 +66,8 @@ public class ChambreControler {
 	public String afficherChambre(Model model,@RequestParam(name="id", defaultValue="1")long id) {
 		Optional<Chambre> c = cr.findById(id);
 		model.addAttribute("chambre", c);		
-		return "afficher_chambre";		
+		System.out.println(c);
+		return "afficher_chambre.html";		
 	}
 	@RequestMapping(value="/modifier", method=RequestMethod.POST)
 	public String modifierClient(Model model, Chambre c) {
