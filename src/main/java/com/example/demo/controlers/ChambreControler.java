@@ -66,7 +66,7 @@ public class ChambreControler {
 		model.addAttribute("chambre", c);		
 		return "afficher_chambre";		
 	}
-	@RequestMapping(value="/modifier", method=RequestMethod.POST)
+	@RequestMapping(value="/modifier", method=RequestMethod.PUT)
 	public String modifierClient(Model model, Chambre c) {
 		cr.save(c);
 		
