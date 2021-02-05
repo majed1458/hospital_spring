@@ -119,13 +119,13 @@
                 <div class="project__wrapper">
                 
                 
-           <form  th:action="@{modifier}" method="post" class="">
+           <form  th:action="@{modifier}" method="post" class="" th:object="${chambre}">
             <label for="numero de chbbre " class="mar">Numero de chambre</label>
         
               <input
                 class="marg" 
                 type="number"
-                th:field="*{chambre.numero}"
+                th:field="*{numero}"
               /> 
               <br />	
                   <label for="capacite" class="form-label mar">capacité</label>
@@ -134,7 +134,7 @@
               <input
                 class="marg"
                 type="number"
-                th:field="*{chambre.capacite}"
+                th:field="*{capacite}"
               /> 
               
        

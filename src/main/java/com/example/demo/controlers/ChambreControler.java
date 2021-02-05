@@ -58,21 +58,27 @@ public class ChambreControler {
 	}
 	
 	@RequestMapping(value="/suprimer")
-	public String suprimer_chambre(Model model, @RequestParam(name="id", defaultValue="0")long id){
+	public String suprimer_chambre(Model model, @RequestParam(name="id")long id){
 		cr.deleteById(id);
 		
 		return "redirect:liste";		
 	}
 	@RequestMapping(value="/afficherChambre", method=RequestMethod.GET)
 	public String afficherChambre(Model model,@RequestParam(name="id", defaultValue="1")long id) {
-		Optional<Chambre> c = cr.findById(id);
+		Chambre c = cr.findById(id).get();
 		model.addAttribute("chambre", c);		
 		System.out.println(c);
 		return "afficher_chambre.html";		
 	}
 	@RequestMapping(value="/modifier", method=RequestMethod.POST)
 	public String modifierClient(Model model, Chambre c) {
-		cr.save(c);
+		Chambre k= cr.findById(c.getId()).get();
+		k.setCapacite(c.getCapacite());
+		k.setNumero(c.getNumero());
+		System.out.println(c);
+		
+	cr.save(k);
+	System.out.println(cr);
 		
 		return "redirect:liste";		
 	}	
