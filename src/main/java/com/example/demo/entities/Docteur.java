@@ -19,12 +19,29 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="docteur")
 public class Docteur extends Personne {
-	@ManyToOne()
-	@JoinColumn(name = "depId")
-	private Departement departement;
+	 @Column(name = "departement", nullable = false)
+	private String departement;
 	 @Basic
 	 @Column(name = "job", nullable = false, length = 16)
     private String job;
 	 @OneToMany(mappedBy = "docteur")
 	 private Collection<Visite> visites ;
+	public String  getDepartement() {
+		return departement;
+	}
+	public void setDepartement(String departement) {
+		this.departement = departement;
+	}
+	public String getJob() {
+		return job;
+	}
+	public void setJob(String job) {
+		this.job = job;
+	}
+	public Collection<Visite> getVisites() {
+		return visites;
+	}
+	public void setVisites(Collection<Visite> visites) {
+		this.visites = visites;
+	}
 }

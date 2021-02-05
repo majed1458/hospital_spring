@@ -38,7 +38,7 @@
               </svg>
             </a>
           </li>
-          <li class="nav__item">
+          <li class="nav__item nav__item--isActive">
             <a
 th:href="@{~/doctor/allDoctors}"
               class="nav__link focus--box-shadow"
@@ -46,19 +46,19 @@ th:href="@{~/doctor/allDoctors}"
               aria-label="Favorite projects"
             >
             
-       <img  th:src="@{/img/doctor.png}"  />
+       <img  th:src="@{/img/doctor.png}" style="    color: #f00;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);"  />
             </a>
           </li>
-          <li class="nav__item nav__item--isActive">
+          <li class="nav__item ">
             <a
               th:href="@{~/patient/allPatients}"
               class="nav__link focus--box-shadow"
               role="menuitem"
               aria-label="Informational messages"
               >       
-       <img  th:src="@{/img/hospitalisation.png}" style="    color: #f00;
-    -webkit-filter: invert(100%);
-    filter: invert(100%);"  />
+       <img  th:src="@{/img/hospitalisation.png}"  />
 
             </a>
           </li>
@@ -110,7 +110,7 @@ th:href="@{~/doctor/allDoctors}"
  
         <section class="section">
           <header class="section__header">
-            <h2 class="section__title">Ajouter Patient</h2>
+            <h2 class="section__title">Ajouter Doctor</h2>
        
           </header>
               <ul class="project" >
@@ -119,7 +119,7 @@ th:href="@{~/doctor/allDoctors}"
                 <div class="project__wrapper">
                 
                 
-           <form  th:action="@{save}" method="post" style="width:100.; diplay:flex; flex-direction:row;">
+           <form  th:action="@{modifier(id=${param.id})}" method="post" style="width:100.; diplay:flex; flex-direction:row;">
            
            
             <label for="numero cin de pataient " class="mar">cin</label>
@@ -150,15 +150,17 @@ th:href="@{~/doctor/allDoctors}"
                 th:required="required"
               /> 
                <br />	
-                  <label for="maladie" class="form-label mar">maladie</label>
+                  <label for="job
+                  " class="form-label mar">job</label>
                             <br />
               
               <input
                 class="marg"
                 type="text"
-                th:field="*{p.maladie}"
+                th:field="*{p.job}"
                 th:required="required"
               /> 
+              
                <label for="phone" class="form-label mar">phone</label>
                             <br />
               
@@ -186,7 +188,15 @@ th:href="@{~/doctor/allDoctors}"
                 th:field="*{p.email}"
                 th:required="required"
               /> 
-             
+                  <label for="departement" class="form-label mar">departement</label>
+                            <br />
+              
+              <input
+                class="marg"
+                type="text"
+                th:field="*{p.departement}"
+                th:required="required"
+              /> 
        
               <button
                 class="section__button section__button--painted focus--box-shadow"
