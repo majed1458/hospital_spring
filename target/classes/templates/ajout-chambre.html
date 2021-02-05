@@ -16,7 +16,7 @@
   </head>
   <body>
     <div class="wrapper">
-      <nav class="nav">
+     <nav class="nav">
         <ul class="nav__list" role="menubar">
           <li class="nav__item ">
             <a
@@ -40,7 +40,7 @@
           </li>
           <li class="nav__item">
             <a
-              th:href="@{chambre/liste}"
+              th:href="@{~/chambre/liste}"
               class="nav__link focus--box-shadow"
               role="menuitem"
               aria-label="Favorite projects"
@@ -51,7 +51,7 @@
           </li>
           <li class="nav__item">
             <a
-              th:href="@{chambre/liste}"
+              th:href="@{~/patient/allPatients}"
               class="nav__link focus--box-shadow"
               role="menuitem"
               aria-label="Informational messages"
@@ -62,7 +62,7 @@
           </li>
           <li class="nav__item">
             <a
-              th:href="@{chambre/liste}"
+              th:href="@{~/chambre/liste}"
               class="nav__link focus--box-shadow"
               role="menuitem"
               aria-label="Collections"
@@ -73,7 +73,7 @@
           </li>
           <li class="nav__item nav__item--isActive">
             <a
-              th:href="@{chambre/liste}"
+              th:href="@{~/chambre/liste}"
               class="nav__link focus--box-shadow"
               role="menuitem"
               aria-label="Analytics"
@@ -126,6 +126,7 @@
                 class="marg" 
                 type="number"
                 th:field="*{c.numero}"
+                th:required="required"
               /> 
               <br />	
                   <label for="capacite" class="form-label mar">capacité</label>
@@ -135,6 +136,7 @@
                 class="marg"
                 type="number"
                 th:field="*{c.capacite}"
+                th:required="required"
               /> 
               
        

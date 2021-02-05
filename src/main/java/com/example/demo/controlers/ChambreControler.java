@@ -71,14 +71,15 @@ public class ChambreControler {
 		return "afficher_chambre.html";		
 	}
 	@RequestMapping(value="/modifier", method=RequestMethod.POST)
-	public String modifierClient(Model model, Chambre c) {
-		Chambre k= cr.findById(c.getId()).get();
+	public String modifierClient(Model model, Chambre c,@RequestParam(name="id", defaultValue="1")long id) {
+
+		Chambre k= cr.findById(id).get();
+
 		k.setCapacite(c.getCapacite());
 		k.setNumero(c.getNumero());
 		System.out.println(c);
 		
 	cr.save(k);
-	System.out.println(cr);
 		
 		return "redirect:liste";		
 	}	

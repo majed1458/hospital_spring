@@ -22,9 +22,40 @@ public class Patient extends Personne {
 	private String maladie ;
     @Basic
     @Column(name = "etat", nullable = true, length = 20)
-	private String etat ;
+	private String etat = "en attente" ;
     
     
     @OneToMany(mappedBy = "patient")
 	 private Collection<Visite> visites ;
+
+
+	public String getMaladie() {
+		return maladie;
+	}
+
+
+	public void setMaladie(String maladie) {
+		this.maladie = maladie;
+	}
+
+
+	public String getEtat() {
+		return etat;
+	}
+
+
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+
+
+	public Collection<Visite> getVisites() {
+		return visites;
+	}
+
+
+	public void setVisites(Collection<Visite> visites) {
+		this.visites = visites;
+	}
+	
     }

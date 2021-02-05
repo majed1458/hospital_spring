@@ -110,7 +110,7 @@
  
         <section class="section">
           <header class="section__header">
-            <h2 class="section__title">Ajouter Patient</h2>
+            <h2 class="section__title">Modifier Patient</h2>
        
           </header>
               <ul class="project" >
@@ -119,17 +119,17 @@
                 <div class="project__wrapper">
                 
                 
-           <form  th:action="@{save}" method="post" style="width:100.; diplay:flex; flex-direction:row;">
+           <form  th:action="@{modifier(id=${param.id})}" method="post" style="width:100.; diplay:flex; flex-direction:row;">
            
            
             <label for="numero cin de pataient " class="mar">cin</label>
         
-              <input
+              <label
                 class="marg" 
                 type="number"
-                th:field="*{p.cin}"
+                th:text="*{p.cin}"
                 th:required="required"
-              /> 
+            /> 
               <br />	
             <label for="nom de patient " class="mar">Nom</label>
         

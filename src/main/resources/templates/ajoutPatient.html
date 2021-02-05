@@ -16,7 +16,7 @@
   </head>
   <body>
     <div class="wrapper">
-      <nav class="nav">
+       <nav class="nav">
         <ul class="nav__list" role="menubar">
           <li class="nav__item ">
             <a
@@ -40,7 +40,7 @@
           </li>
           <li class="nav__item">
             <a
-              th:href="@{chambre/liste}"
+              th:href="@{~/chambre/liste}"
               class="nav__link focus--box-shadow"
               role="menuitem"
               aria-label="Favorite projects"
@@ -49,20 +49,22 @@
        <img  th:src="@{/img/doctor.png}"  />
             </a>
           </li>
-          <li class="nav__item">
+          <li class="nav__item nav__item--isActive">
             <a
-              th:href="@{chambre/liste}"
+              th:href="@{~/patient/allPatients}"
               class="nav__link focus--box-shadow"
               role="menuitem"
               aria-label="Informational messages"
               >       
-       <img  th:src="@{/img/hospitalisation.png}"  />
+       <img  th:src="@{/img/hospitalisation.png}" style="    color: #f00;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);"  />
 
             </a>
           </li>
           <li class="nav__item">
             <a
-              th:href="@{chambre/liste}"
+              th:href="@{~/chambre/liste}"
               class="nav__link focus--box-shadow"
               role="menuitem"
               aria-label="Collections"
@@ -71,16 +73,14 @@
 
             </a>
           </li>
-          <li class="nav__item nav__item--isActive">
+          <li class="nav__item ">
             <a
-              th:href="@{chambre/liste}"
+              th:href="@{~/chambre/liste}"
               class="nav__link focus--box-shadow"
               role="menuitem"
               aria-label="Analytics"
             >
-       <img  th:src="@{/img/surgery-room.png}"  style="    color: #f00;
-    -webkit-filter: invert(100%);
-    filter: invert(100%);"/>
+       <img  th:src="@{/img/surgery-room.png}"  />
 
             </a>
           </li>
@@ -110,7 +110,7 @@
  
         <section class="section">
           <header class="section__header">
-            <h2 class="section__title">Ajouter Chambre</h2>
+            <h2 class="section__title">Ajouter Patient</h2>
        
           </header>
               <ul class="project" >
@@ -122,20 +122,22 @@
            <form  th:action="@{save}" method="post" style="width:100.; diplay:flex; flex-direction:row;">
            
            
-            <label for="numero de chbbre " class="mar">cin</label>
+            <label for="numero cin de pataient " class="mar">cin</label>
         
               <input
                 class="marg" 
                 type="number"
                 th:field="*{p.cin}"
+                th:required="required"
               /> 
               <br />	
-            <label for="numero de chbbre " class="mar">Nom</label>
+            <label for="nom de patient " class="mar">Nom</label>
         
               <input
                 class="marg" 
                 type="text"
                 th:field="*{p.nom}"
+                th:required="required"
               /> 
               <br />	
                   <label for="capacite" class="form-label mar">Prenom</label>
@@ -145,31 +147,44 @@
                 class="marg"
                 type="text"
                 th:field="*{p.prenom}"
+                th:required="required"
               /> 
                <br />	
-                  <label for="capacite" class="form-label mar">maladie</label>
+                  <label for="maladie" class="form-label mar">maladie</label>
                             <br />
               
               <input
                 class="marg"
                 type="text"
                 th:field="*{p.maladie}"
+                th:required="required"
               /> 
-               <label for="capacite" class="form-label mar">phone</label>
+               <label for="phone" class="form-label mar">phone</label>
                             <br />
               
               <input
                 class="marg"
-                type="text"
+                type="number"
                 th:field="*{p.phoneNumber}"
+                th:required="required"
               /> 
-                <label for="capacite" class="form-label mar">mail</label>
+                  <label for="age" class="form-label mar">age</label>
                             <br />
               
               <input
                 class="marg"
-                type="text"
+                type="number"
+                th:field="*{p.age}"
+                th:required="required"
+              /> 
+                <label for="mail" class="form-label mar">mail</label>
+                            <br />
+              
+              <input
+                class="marg"
+                type="email"
                 th:field="*{p.email}"
+                th:required="required"
               /> 
              
        
