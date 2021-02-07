@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,10 @@ public class Patient extends Personne {
     
     @OneToMany(mappedBy = "patient")
 	 private Collection<Visite> visites ;
+
+    
+    @OneToOne(mappedBy = "patient")
+	 private Lit lit ;
 
 
 	public String getMaladie() {
@@ -56,6 +61,16 @@ public class Patient extends Personne {
 
 	public void setVisites(Collection<Visite> visites) {
 		this.visites = visites;
+	}
+
+
+	public Lit getLit() {
+		return lit;
+	}
+
+
+	public void setLit(Lit lit) {
+		this.lit = lit;
 	}
 	
     }

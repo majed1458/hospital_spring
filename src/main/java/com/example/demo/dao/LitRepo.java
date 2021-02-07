@@ -14,4 +14,7 @@ public interface LitRepo extends JpaRepository<Lit, Long>{
 	List<Lit> findByChambre(Chambre chambre);
 	@Query("SELECT COUNT(*) FROM Lit l WHERE chambre_id=:x")
 	int countlit(@Param("x") long id);
+	List<Lit> findByChargé(Boolean chargé );
+	@Query("SELECT COUNT(*) FROM Lit l WHERE chambre_id=:x AND l.chargé=false")
+	int countlitnonchargé(@Param("x") long id);
 }

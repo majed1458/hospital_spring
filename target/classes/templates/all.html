@@ -60,7 +60,7 @@ th:href="@{~/patient/allPatients}"
           </li>
           <li class="nav__item">
             <a
-              th:href="@{~/chambre/liste}"
+              th:href="@{~/lit/allLitsnocharge}"
               class="nav__link focus--box-shadow"
               role="menuitem"
               aria-label="Collections"
@@ -244,7 +244,7 @@ th:href="@{~/patient/allPatients}"
           <br />
                    <ul class="espace">
             <li class="espace__item">
-              <a class="espace__link focus--box-shadow" th:href="@{chambre/liste}">
+              <a class="espace__link focus--box-shadow" th:href="@{lit/allLitsnocharge}">
                 <div class="espace__header">
             
                   <button
@@ -271,7 +271,7 @@ th:href="@{~/patient/allPatients}"
                   </button>
                 </div>
                 <div class="espace__inform">
-                  <p class="espace__name">Espace Lit </p>
+                  <p class="espace__name">Espace Lit non chargé</p>
                   <time class="date" datetime="2020-05-05T10:00:00"
                     >30 Jan, 2021</time
                   >

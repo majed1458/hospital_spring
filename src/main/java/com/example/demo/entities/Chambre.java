@@ -29,6 +29,9 @@ public class Chambre {
 	 @Basic
 	 @Column(name = "capacite", nullable = false)
 	 private int capacite ;
+	 @Basic
+	 @Column(name = "litnoncharge", nullable = false)
+	 private int litnoncharge ;
 	 @OneToMany(cascade = CascadeType.ALL ,mappedBy = "chambre" )
 	 private Collection<Lit> lits ;
 	public int getNumero() {
@@ -55,6 +58,12 @@ public class Chambre {
 	}
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+	public int getLitnoncharge() {
+		return litnoncharge;
+	}
+	public void setLitnoncharge(int litnoncharge) {
+		this.litnoncharge = litnoncharge;
 	} 
 	
 	 

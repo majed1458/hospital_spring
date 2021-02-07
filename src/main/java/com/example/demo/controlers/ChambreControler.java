@@ -38,7 +38,13 @@ public class ChambreControler {
 	@RequestMapping(value="/liste")
 	public String afficherChambres(Model model) {
 		List<Chambre> liste = cr.findAll();
+for (Chambre chambre : liste) {
+	 int z=  lit.countlitnonchargé(chambre.getId());
+	 chambre.setLitnoncharge(z);
+}
+		
 		model.addAttribute("liste",liste);
+		
 		return "tous-chambres.html";
 	}
 	@RequestMapping(value="/addChambre", method=RequestMethod.GET)
@@ -48,7 +54,7 @@ public class ChambreControler {
 		return "ajout-chambre.html";
 	}
 	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String saveChambret(@Valid Chambre c, BindingResult bindingResult, Model model){		
+	public String saveChambret(@Valid Chambre c, BindingResult bindingResult, Model model, Boolean flase){		
 		if(bindingResult.hasErrors()) {
 			System.out.println("errors = " + bindingResult.getAllErrors());
 			model.addAttribute("chambre", c);	
@@ -65,6 +71,8 @@ public class ChambreControler {
 				Lit l = new Lit();
 
 				l.setChambre(c);
+				l.setChargé(false);;
+
 					lit.save(l);
 				}
 		}else {
@@ -90,7 +98,7 @@ public class ChambreControler {
 		return "afficher_chambre.html";		
 	}
 	@RequestMapping(value="/modifier", method=RequestMethod.POST)
-	public String modifierClient(Model model, Chambre c,@RequestParam(name="id", defaultValue="1")long id) {
+	public String modifierClient(Model model, Chambre c,@RequestParam(name="id", defaultValue="1")long id, Boolean flase) {
 
 		Chambre k= cr.findById(id).get();
 
@@ -108,6 +116,7 @@ if(x>c.getCapacite())
 		Lit l = new Lit();
 
 		l.setChambre(c);
+		l.setChargé(flase);;
 
 			lit.save(l);
 
@@ -129,3 +138,11 @@ if(x>c.getCapacite())
 	
 	
 }
+
+
+
+
+
+
+
+

@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CascadeType;
 
@@ -24,10 +25,13 @@ public class Lit {
 @Column(name = "lit_id", nullable = false)
  private long id;
 @Column(columnDefinition = "boolean default false")
-private Boolean chargé ;
+private Boolean chargé =false;
 @ManyToOne(cascade = javax.persistence.CascadeType.MERGE )
 @JoinColumn(name = "chambreId")
 private Chambre chambre;
+@OneToOne(cascade = javax.persistence.CascadeType.ALL )
+@JoinColumn(name = "patientId")
+private Patient patient;
 public long getId() {
 	return id;
 }
@@ -45,6 +49,12 @@ public Chambre getChambre() {
 }
 public void setChambre(Chambre chambre) {
 	this.chambre = chambre;
+}
+public Patient getPatient() {
+	return patient;
+}
+public void setPatient(Patient patient) {
+	this.patient = patient;
 }
 
 

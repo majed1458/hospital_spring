@@ -63,7 +63,7 @@ th:href="@{~/doctor/allDoctors}"
           </li>
           <li class="nav__item">
             <a
-              th:href="@{~/chambre/liste}"
+              th:href="@{~/lit/allLitsnocharge}"
               class="nav__link focus--box-shadow"
               role="menuitem"
               aria-label="Collections"
@@ -206,6 +206,12 @@ th:href="@{~/doctor/allDoctors}"
                       
                     >
                     </button>
+                         <button
+                      class="setting setting--rotate focus--box-shadow"
+                      type="button"
+                      
+                    >
+                    </button>
                   </div>
                 </div>
               </div>
@@ -278,6 +284,15 @@ th:href="@{~/doctor/allDoctors}"
                     >
             <img th:src="@{/img/edit.png}" />
                     </button></a>
+                  </div>
+                       <div class="project__element project__setting">
+                      <a th:href="@{alllitnon(id=${pa.cin})}"> 
+                    <button
+                      class="setting setting--rotate focus--box-shadow"
+                      type="button"
+                      
+                    >
+<span>affecter a un lit </span>                    </button></a>
                   </div>
                 </div>
               </div>

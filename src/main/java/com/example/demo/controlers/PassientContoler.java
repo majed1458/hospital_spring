@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.dao.LitRepo;
 import com.example.demo.dao.PatientRepo;
+import com.example.demo.entities.Lit;
 import com.example.demo.entities.Patient;
 
 
@@ -24,7 +26,8 @@ import com.example.demo.entities.Patient;
 public class PassientContoler {
 	@Autowired
 	PatientRepo patient;
-	
+	@Autowired
+	LitRepo lit;
 	@GetMapping(value="/allPatients")
 	public String allPatients(Model model) {
 		List<Patient> pa=patient.findAll();
@@ -39,6 +42,7 @@ public class PassientContoler {
 		model.addAttribute("p",pa);
 		return "ajoutPatient";
 	}
+	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String savePatient(@Valid Patient p, BindingResult bindingResult, Model model){		
 		if(bindingResult.hasErrors()) {
@@ -67,6 +71,13 @@ public class PassientContoler {
 		
 		return "redirect:allPatients";		
 	}
+	@RequestMapping(value="/alllitnon")
+	public String alllitnon(Model model, @RequestParam(name="id")long id){
+		List<Lit> pa=lit.findByChargé(false);
+		model.addAttribute("pa",pa);
+		
+		return "lits";
+	}
 	@RequestMapping(value="/patientDetail", method=RequestMethod.GET)
 	public String afficherPatient(Model model,@RequestParam(name="id", defaultValue="1")long id) {
 		Patient pa = patient.findById(id).get();
@@ -91,5 +102,25 @@ public class PassientContoler {
 		return "redirect:allPatients";		
 	}	
 	
+	@RequestMapping(value="/affecteraunlit", method=RequestMethod.POST)
+	public String affecteraunlit(Model model, @RequestParam(name="id2", defaultValue="1")long id2,@RequestParam(name="id", defaultValue="1")long id) {
 
+		Lit li= lit.findById(id2).get();
+		Patient pa= patient.findById(id).get();
+
+
+	li.setChargé(true);	
+	li.setPatient(pa);
+	lit.save(li);
+		pa.setLit(li);
+
+		pa.setEtat("c bon");
+
+	patient.save(pa);
+
+
+		
+		return "redirect:allPatients";		
+	}	
+	
 }

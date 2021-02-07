@@ -61,7 +61,7 @@ th:href="@{~/doctor/allDoctors}"
           </li>
           <li class="nav__item">
             <a
-              th:href="@{~/chambre/liste}"
+              th:href="@{~/lit/allLitsnocharge}"
               class="nav__link focus--box-shadow"
               role="menuitem"
               aria-label="Collections"
@@ -163,6 +163,11 @@ th:href="@{~/doctor/allDoctors}"
                       >Capacite</span
                     >
                   </div>
+                   <div class="project__element project__date">
+                   <span class="project__inform-name" 
+                      >Nombre de lit non chargé</span
+                    >
+                  </div>
                   <div class="project__element project__status">
                   </div>
                   <div class="project__element project__setting">
@@ -196,6 +201,10 @@ th:href="@{~/doctor/allDoctors}"
           
                   <div class="project__element project__date">
                    <span class="project__inform-name" th:text="${c.capacite}"
+                      ></span
+                    >
+                  </div><div class="project__element project__date">
+                   <span class="project__inform-name" th:text="${c.litnoncharge}"
                       ></span
                     >
                   </div>
