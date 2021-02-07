@@ -124,25 +124,7 @@ th:href="@{~/doctor/allDoctors}"
         <section class="section">
           <header class="section__header">
             <h2 class="section__title">Lit non chargé</h2>
-            <div class="section__control">
-       <a th:href="@{addPatient}">
        
-              <button
-                class="section__button section__button--painted focus--box-shadow"
-                type="button"
-                aria-label="Add New Chambre"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  role="presentation"
-                >
-              <path
-                    d="M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z"
-                  />
-                </svg>
-              </button> </a>
-            </div>
           </header>
               <ul class="project" >
             <li class="project__item" >
@@ -259,17 +241,8 @@ th:href="@{~/doctor/allDoctors}"
                     >
                   </div>
         
-                  <div class="project__element project__status">
-                     <a > 
-                    <button
-                      class="setting setting--rotate focus--box-shadow"
-                      type="button"
-                      
-                    >
-            <img th:src="@{/img/delete.png}" />
-                    </button></a>
-                  </div>
-                  <div class="project__element project__setting">
+
+                  <div class="project__element project__setting"  th:if="${param.id}" >
                   
                   
                   

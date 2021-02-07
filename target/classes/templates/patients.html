@@ -294,6 +294,15 @@ th:href="@{~/doctor/allDoctors}"
                     >
 <span>affecter a un lit </span>                    </button></a>
                   </div>
+                           <div class="project__element project__setting">
+                      <a th:href="@{libererunlit(id=${pa.cin})}"> 
+                    <button
+                      class="setting setting--rotate focus--box-shadow"
+                      type="button"
+                      
+                    >
+<span>liberer lit </span>                    </button></a>
+                  </div>
                 </div>
               </div>
             </li>

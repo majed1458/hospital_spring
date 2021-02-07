@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.demo.entities.Chambre;
 import com.example.demo.entities.Lit;
+import com.example.demo.entities.Patient;
 
 public interface LitRepo extends JpaRepository<Lit, Long>{
 	List<Lit> findByChambre(Chambre chambre);
@@ -17,4 +18,8 @@ public interface LitRepo extends JpaRepository<Lit, Long>{
 	List<Lit> findByChargé(Boolean chargé );
 	@Query("SELECT COUNT(*) FROM Lit l WHERE chambre_id=:x AND l.chargé=false")
 	int countlitnonchargé(@Param("x") long id);
+	
+	
+	Lit findByPatient(Patient patient);
+
 }

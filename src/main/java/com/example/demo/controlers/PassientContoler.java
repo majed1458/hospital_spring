@@ -67,6 +67,14 @@ public class PassientContoler {
 	
 	@RequestMapping(value="/suprimer")
 	public String suprimer_patient(Model model, @RequestParam(name="id")long id){
+		Patient pa= patient.findById(id).get();
+
+		Lit li=lit.findByPatient(pa);
+
+		li.setChargé(false);	
+		li.setPatient(null);
+		lit.save(li);
+		
 		patient.deleteById(id);
 		
 		return "redirect:allPatients";		
@@ -123,4 +131,23 @@ public class PassientContoler {
 		return "redirect:allPatients";		
 	}	
 	
+	@RequestMapping(value="/libererunlit", method=RequestMethod.GET)
+	public String libererunlit(Model model ,@RequestParam(name="id", defaultValue="1")long id) {
+System.out.println("yoyo");	
+Patient pa= patient.findById(id).get();
+Lit li=lit.findByPatient(pa);
+
+	li.setChargé(false);	
+	li.setPatient(null);
+	lit.save(li);
+		pa.setLit(null);
+
+		pa.setEtat("en attente");
+
+	patient.save(pa);
+
+
+		
+		return "redirect:allPatients";		
+	}
 }
