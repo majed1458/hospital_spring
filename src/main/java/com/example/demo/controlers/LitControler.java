@@ -2,6 +2,7 @@ package com.example.demo.controlers;
 
 import java.util.List;
 
+import org.springframework.boot.origin.SystemEnvironmentOrigin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +23,7 @@ public class LitControler {
 	LitRepo lit ;
 Cambre ch ;
 
-	@GetMapping(value="/chabreLit")
-	@RequestMapping(value="/afficherChambre", method=RequestMethod.GET)
+	@RequestMapping(value="/afficherLit", method=RequestMethod.GET)
 	public String ChambreLit(Model model,@RequestParam(name="id", defaultValue="1")long id) {
 		Lit c = new Lit();
 		
@@ -32,8 +32,11 @@ Cambre ch ;
 		return "affectéLit.html";		
 	}
 	
-	@PostMapping(value="/ajouterLit")
-	public String ajouLit(@RequestParam(name="id", defaultValue="1")long id ,Lit l) {
+	@RequestMapping(value="/ajouterLit")
+	public String ajouLit(@RequestParam(name="id", defaultValue="1")long id ) {
+		System.out.println("errors = ertertertretz"+id);
+		Lit l = new Lit();
+
 	Chambre ch2=ch.findById(id).get();
 	l.setChambre(ch2);
 		lit.save(l);

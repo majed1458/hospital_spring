@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.dao.Cambre;
+import com.example.demo.dao.LitRepo;
 import com.example.demo.entities.Chambre;
 import com.example.demo.entities.Lit;
 
@@ -30,7 +31,9 @@ import com.example.demo.entities.Lit;
 public class ChambreControler {
 	@Autowired
 	Cambre cr;
-	
+	@Autowired
+	LitRepo lit ;
+
 	
 	@RequestMapping(value="/liste")
 	public String afficherChambres(Model model) {
@@ -50,12 +53,20 @@ public class ChambreControler {
 			System.out.println("errors = " + bindingResult.getAllErrors());
 			model.addAttribute("chambre", c);	
 			
+			
+			
 			return "redirect:addChambre";
 		}
 		List<Chambre> kr =cr.findByNumero(c.getNumero());
 		if (kr.isEmpty()) {
+		
 			cr.save(c);
-			
+			for(int i = 0;i<c.getCapacite();i++ ) {
+				Lit l = new Lit();
+
+				l.setChambre(c);
+					lit.save(l);
+				}
 		}else {
 			String msg ="la chambre existe deja";
 			model.addAttribute("error", msg);
@@ -65,8 +76,10 @@ public class ChambreControler {
 	
 	@RequestMapping(value="/suprimer")
 	public String suprimer_chambre(Model model, @RequestParam(name="id")long id){
-		cr.deleteById(id);
-		
+		Chambre cha = cr.findById(id).get();
+	List<Lit> li=	lit.findByChambre(cha);
+	lit.deleteAll(li);
+	cr.deleteById(id);
 		return "redirect:liste";		
 	}
 	@RequestMapping(value="/afficherChambre", method=RequestMethod.GET)
@@ -81,6 +94,28 @@ public class ChambreControler {
 
 		Chambre k= cr.findById(id).get();
 
+		int x = lit.countlit(id);
+		System.out.println("fdgdfjhkgfdkg"+x);
+if(x>c.getCapacite())
+{
+	for(int i=0;i<x-c.getCapacite();i++) {
+	List<Lit> li=	lit.findByChambre(c);
+	lit.delete(li.get(0) );
+	}
+}else if( x<c.getCapacite()) {
+	
+	for(int i = 0;i<c.getCapacite()-x;i++ ) {
+		Lit l = new Lit();
+
+		l.setChambre(c);
+
+			lit.save(l);
+
+		}
+	
+	
+	
+}
 		k.setCapacite(c.getCapacite());
 		k.setNumero(c.getNumero());
 		System.out.println(c);

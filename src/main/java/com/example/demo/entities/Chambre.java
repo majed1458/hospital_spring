@@ -3,9 +3,11 @@ package com.example.demo.entities;
 import java.util.Collection;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -19,15 +21,15 @@ import lombok.NoArgsConstructor;
 public class Chambre {
 	 @Id
 	 @Column(name = "chambre_id", nullable = false)
-	 @GeneratedValue
-     private long id;
+	 @GeneratedValue(strategy = GenerationType.AUTO)   
+	 private long id;
 	 @Basic
 	 @Column(name = "numero", nullable = false)
 	 private int numero ;
 	 @Basic
 	 @Column(name = "capacite", nullable = false)
 	 private int capacite ;
-	 @OneToMany(mappedBy = "chambre")
+	 @OneToMany(cascade = CascadeType.ALL ,mappedBy = "chambre" )
 	 private Collection<Lit> lits ;
 	public int getNumero() {
 		// TODO Auto-generated method stub
