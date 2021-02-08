@@ -108,7 +108,7 @@ th:href="@{~/doctor/allDoctors}"
             </form>
             <div class="profile">
               <button class="profile__button">
-                <span class="profile__name">Admin</span>
+                <span class="profile__name" th:text="${username}"></span>
                 <img
                   class="profile__img"
                 src="https://img.icons8.com/bubbles/2x/admin-settings-male.png"
@@ -285,7 +285,7 @@ th:href="@{~/doctor/allDoctors}"
             <img th:src="@{/img/edit.png}" />
                     </button></a>
                   </div>
-                       <div class="project__element project__setting">
+                       <div class="project__element project__setting" th:if="${pa.etat == 'en attente'}">
                       <a th:href="@{alllitnon(id=${pa.cin})}"> 
                     <button
                       class="setting setting--rotate focus--box-shadow"
@@ -294,7 +294,7 @@ th:href="@{~/doctor/allDoctors}"
                     >
 <span>affecter a un lit </span>                    </button></a>
                   </div>
-                           <div class="project__element project__setting">
+                           <div class="project__element project__setting" th:if="${pa.etat == 'c bon'}"> 
                       <a th:href="@{libererunlit(id=${pa.cin})}"> 
                     <button
                       class="setting setting--rotate focus--box-shadow"

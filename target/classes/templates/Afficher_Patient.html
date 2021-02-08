@@ -95,7 +95,7 @@ th:href="@{~/doctor/allDoctors}"
           
             <div class="profile">
               <button class="profile__button">
-                <span class="profile__name">Admin</span>
+                <span class="profile__name" th:text="${username}"></span>
                 <img
                   class="profile__img"
                 src="https://img.icons8.com/bubbles/2x/admin-settings-male.png"
@@ -208,6 +208,7 @@ th:href="@{~/doctor/allDoctors}"
             </li>
           </ul>
           <br />
+         
         </section>
           
       </main>

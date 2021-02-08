@@ -21,10 +21,11 @@ public interface LitRepo extends JpaRepository<Lit, Long>{
 	
 	
 	Lit findByPatient(Patient patient);
-	@Query("SELECT l.id , l.chargé, c.capacite , c.numero FROM Lit l , Chambre c   WHERE c=l.chambre AND    l.chargé=FALSE  ")
+	@Query("SELECT l.id , c.numero FROM Lit l , Chambre c   WHERE c=l.chambre AND    l.chargé=FALSE  ")
 	List<Object> findByChargéchambre();
 
-	
+	@Query("SELECT COUNT(*) FROM Lit l")
+	int countalllit();
 	
 
 }

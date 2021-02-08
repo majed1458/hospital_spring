@@ -108,7 +108,7 @@ th:href="@{~/doctor/allDoctors}"
             </form>
             <div class="profile">
               <button class="profile__button">
-                <span class="profile__name">Admin</span>
+                <span class="profile__name" th:text="${username}">Admin</span>
                 <img
                   class="profile__img"
                 src="https://img.icons8.com/bubbles/2x/admin-settings-male.png"
@@ -124,7 +124,7 @@ th:href="@{~/doctor/allDoctors}"
         <section class="section">
           <header class="section__header">
             <h2 class="section__title">Doctors</h2>
-            <div class="section__control">
+            <div class="section__control" th:if="${role=='admin'}">
        <a th:href="@{addDocotor}">
        
               <button
@@ -249,7 +249,7 @@ th:href="@{~/doctor/allDoctors}"
                     th:text="${pa.departement}"  ></span
                     >
                   </div>
-               <div class="project__element project__status">
+               <div class="project__element project__status" th:if="${role=='admin'}">
                      <a th:href="@{suprimer(id=${pa.cin})}"> 
                     <button
                       class="setting setting--rotate focus--box-shadow"
@@ -259,7 +259,7 @@ th:href="@{~/doctor/allDoctors}"
             <img th:src="@{/img/delete.png}" />
                     </button></a>
                   </div>
-                  <div class="project__element project__setting">
+                  <div class="project__element project__setting" th:if="${role=='admin'}">
                       <a th:href="@{DoctorDetail(id=${pa.cin})}"> 
                     <button
                       class="setting setting--rotate focus--box-shadow"

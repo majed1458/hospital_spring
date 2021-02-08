@@ -95,7 +95,7 @@ th:href="@{~/doctor/allDoctors}"
           
             <div class="profile">
               <button class="profile__button">
-                <span class="profile__name">Admin</span>
+                <span class="profile__name" th:text="${username}"></span>
                 <img
                   class="profile__img"
                 src="https://img.icons8.com/bubbles/2x/admin-settings-male.png"
@@ -111,7 +111,10 @@ th:href="@{~/doctor/allDoctors}"
         <section class="section">
           <header class="section__header">
             <h2 class="section__title">Ajouter Patient</h2>
-       
+         <div>
+          <p th:text="${error}">erreur</p>
+          
+          </div>
           </header>
               <ul class="project" >
             <li class="project__item" >
@@ -208,6 +211,7 @@ th:href="@{~/doctor/allDoctors}"
             </li>
           </ul>
           <br />
+        
         </section>
           
       </main>

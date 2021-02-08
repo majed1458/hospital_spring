@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
 import com.example.demo.dao.Cambre;
 import com.example.demo.dao.LitRepo;
 import com.example.demo.entities.Chambre;
@@ -26,6 +28,7 @@ import com.example.demo.entities.Lit;
 
 @Controller
 
+@SessionAttributes({"username","role"})
 
 @RequestMapping(value="/chambre")
 public class ChambreControler {
@@ -78,6 +81,10 @@ for (Chambre chambre : liste) {
 		}else {
 			String msg ="la chambre existe deja";
 			model.addAttribute("error", msg);
+			Chambre ch = new Chambre();
+			model.addAttribute("c",ch);
+			return "ajout-chambre.html";			
+
 		}
 		return "redirect:liste";			
 	}

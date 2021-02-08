@@ -373,24 +373,24 @@ th:href="@{~/patient/allPatients}"
                 alt="Profile photo"
               />
             </button>
-            <h1 class="profile-main__name">Admin</h1>
+            <h1 class="profile-main__name" th:text="${username}"></h1>
           </div>
           <ul class="statistics">
             <li class="statistics__entry">
               <a class="statistics__entry-description" href="#">Médecin</a
-              ><span class="statistics__entry-quantity">5</span>
+              ><span class="statistics__entry-quantity" th:text="${doctor}"></span>
             </li>
             <li class="statistics__entry">
               <a class="statistics__entry-description" href="#">Patient</a
-              ><span class="statistics__entry-quantity">13</span>
+              ><span class="statistics__entry-quantity" th:text="${patient}"></span>
             </li>
             <li class="statistics__entry">
               <a class="statistics__entry-description" href="#">Lit</a
-              ><span class="statistics__entry-quantity">48</span>
+              ><span class="statistics__entry-quantity" th:text="${lit}"></span>
             </li>
                <li class="statistics__entry">
               <a class="statistics__entry-description" href="#">Chambre</a
-              ><span class="statistics__entry-quantity">48</span>
+              ><span class="statistics__entry-quantity" th:text="${chambre}"></span>
             </li>
           </ul>
       

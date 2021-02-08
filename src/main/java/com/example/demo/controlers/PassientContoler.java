@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.demo.dao.LitRepo;
 import com.example.demo.dao.PatientRepo;
@@ -22,6 +23,8 @@ import com.example.demo.entities.Patient;
 
 
 @Controller
+@SessionAttributes({"username","role"})
+
 @RequestMapping(value="/patient")
 public class PassientContoler {
 	@Autowired
@@ -58,6 +61,9 @@ public class PassientContoler {
 		
 			String msg ="la patient existe deja";
 			model.addAttribute("error", msg);
+			Patient paaa = new Patient();
+			model.addAttribute("p",paaa);
+			return "ajoutPatient";
 		}else {
 
 			patient.save(p);
@@ -70,20 +76,22 @@ public class PassientContoler {
 		Patient pa= patient.findById(id).get();
 
 		Lit li=lit.findByPatient(pa);
-
+if(!(li==null)) {
 		li.setChargé(false);	
 		li.setPatient(null);
 		lit.save(li);
-		
+}
 		patient.deleteById(id);
 		
 		return "redirect:allPatients";		
 	}
 	@RequestMapping(value="/alllitnon")
 	public String alllitnon(Model model, @RequestParam(name="id")long id){
-		List<Lit> pa=lit.findByChargé(false);
+		List<Object> pa=lit.findByChargéchambre();
 		model.addAttribute("pa",pa);
-		
+		List<Lit> paa=lit.findByChargé(false);
+		model.addAttribute("paa",paa);
+
 		return "lits";
 	}
 	@RequestMapping(value="/patientDetail", method=RequestMethod.GET)

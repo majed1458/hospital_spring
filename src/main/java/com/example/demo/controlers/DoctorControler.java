@@ -13,15 +13,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.demo.dao.DoctorRepo;
 import com.example.demo.dao.PatientRepo;
+import com.example.demo.entities.Chambre;
 import com.example.demo.entities.Docteur;
 import com.example.demo.entities.Patient;
 
 
 
 @Controller
+@SessionAttributes({"username","role"})
+
 @RequestMapping(value="/doctor")
 public class DoctorControler {
 	@Autowired
@@ -56,6 +60,10 @@ public class DoctorControler {
 		
 			String msg ="le docteur existe deja";
 			model.addAttribute("error", msg);
+			
+			Docteur d = new Docteur();
+			model.addAttribute("p",d);
+			return "ajoutDoctor.html";	
 		}else {
 
 			doctor.save(p);
