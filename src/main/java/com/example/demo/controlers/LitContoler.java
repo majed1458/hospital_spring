@@ -36,7 +36,10 @@ public class LitContoler {
 	}
 	@GetMapping(value="/allLitsnocharge")
 	public String litnonchargé(Model model, boolean chargé) {
-		List<Lit> pa=lit.findByChargé(false);
+		
+		
+		List<Object> pa=lit.findByChargéchambre();
+		System.out.println("dlhjkfsdf"+pa);
 		model.addAttribute("pa",pa);
 		
 		return "lits";
