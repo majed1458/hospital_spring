@@ -128,6 +128,7 @@ if(!(li==null)) {
 	li.setChargé(true);	
 	li.setPatient(pa);
 	lit.save(li);
+
 		pa.setLit(li);
 
 		pa.setEtat("c bon");

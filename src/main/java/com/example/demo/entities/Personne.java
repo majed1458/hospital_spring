@@ -20,7 +20,6 @@ import lombok.Data;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Personne {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long cin;
 	@Basic
 	@Column(name = "nom", nullable = false, length = 32,unique = true)

@@ -27,5 +27,6 @@ public interface LitRepo extends JpaRepository<Lit, Long>{
 	@Query("SELECT COUNT(*) FROM Lit l")
 	int countalllit();
 	
-
+	@Query("SELECT l FROM Lit l   WHERE l.patient=:x  ")
+	Lit litdepatient(@Param("x") Patient x);
 }

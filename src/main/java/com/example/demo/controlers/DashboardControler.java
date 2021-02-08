@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +60,7 @@ public class DashboardControler {
 		model.addAttribute("doctor",c3);
 		model.addAttribute("patient",c4);
 	  if(request.getSession()!=null) {
-
+		
 		  return "all.html";
 	  }
 	   return "redirect:signin";
@@ -94,7 +95,27 @@ model.addAttribute("role","admin");
 
 				return "all.html";			
 			}
+	
+	int c1=  lit.countalllit();
+	int c2=  chambre.countallchambre();
+	int c3=  doctor.countalldoctor();
+	int c4=  patient.countallpattient();
+	System.out.println("effzzezezzfefzefzeffz"+c1+c2+c3+c4);
+	model.addAttribute("lit",c1);
+	model.addAttribute("chambre",c2);
+	model.addAttribute("doctor",c3);
+	model.addAttribute("patient",c4);
 	return"login.html";
 	}
+	
+	@RequestMapping(value = "/sign")
+	public String logout(HttpServletRequest request) {
+		System.out.println("hghgjdfhgkhjg");
+	    HttpSession session = request.getSession();
+	        session.invalidate();
+	    
+	    return "redirect:signin";  //Where you go after logout here.
+	}
+	
 	
 }

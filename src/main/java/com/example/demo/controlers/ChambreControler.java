@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.demo.dao.Cambre;
 import com.example.demo.dao.LitRepo;
+import com.example.demo.dao.PatientRepo;
 import com.example.demo.entities.Chambre;
 import com.example.demo.entities.Lit;
+import com.example.demo.entities.Patient;
 
 
 
@@ -36,7 +38,8 @@ public class ChambreControler {
 	Cambre cr;
 	@Autowired
 	LitRepo lit ;
-
+	@Autowired
+	PatientRepo patient;
 	
 	@RequestMapping(value="/liste")
 	public String afficherChambres(Model model) {
@@ -93,8 +96,25 @@ for (Chambre chambre : liste) {
 	public String suprimer_chambre(Model model, @RequestParam(name="id")long id){
 		Chambre cha = cr.findById(id).get();
 	List<Lit> li=	lit.findByChambre(cha);
+	List<Lit> lii =li;
 	lit.deleteAll(li);
-	cr.deleteById(id);
+	cr.deleteById(id); 
+	for (Lit l : lii) {
+		Lit lista=	lit.litdepatient(l.getPatient());
+		System.out.println("rgzgzeg");
+		if(l.getPatient()!=null) {
+			Patient pa = new Patient();
+pa.setAge(l.getPatient().getAge());
+pa.setCin(l.getPatient().getCin());
+pa.setEmail(l.getPatient().getEmail());
+pa.setMaladie(l.getPatient().getMaladie());
+pa.setPhoneNumber(l.getPatient().getPhoneNumber());
+pa.setNom(l.getPatient().getNom());
+pa.setPrenom(l.getPatient().getPrenom());
+		patient.save(pa);
+}
+	}
+	
 		return "redirect:liste";		
 	}
 	@RequestMapping(value="/afficherChambre", method=RequestMethod.GET)
@@ -123,7 +143,6 @@ if(x>c.getCapacite())
 		Lit l = new Lit();
 
 		l.setChambre(c);
-		l.setChargé(flase);;
 
 			lit.save(l);
 

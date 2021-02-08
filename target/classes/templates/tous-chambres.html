@@ -168,9 +168,9 @@ th:href="@{~/doctor/allDoctors}"
                       >Nombre de lit non chargé</span
                     >
                   </div>
-                  <div class="project__element project__status">
+                  <div class="project__element project__status" th:if="${role=='admin'}">
                   </div>
-                  <div class="project__element project__setting">
+                  <div class="project__element project__setting" th:if="${role=='admin'}">
                       
                     <button
                       class="setting setting--rotate focus--box-shadow"

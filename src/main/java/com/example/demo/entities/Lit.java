@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Null;
 
 import org.hibernate.annotations.CascadeType;
 
@@ -25,7 +26,7 @@ public class Lit {
 @Column(name = "lit_id", nullable = false)
  private long id;
 @Column(columnDefinition = "boolean default false")
-private Boolean chargé =false;
+private Boolean chargé = false;
 @ManyToOne(cascade = javax.persistence.CascadeType.MERGE )
 @JoinColumn(name = "chambreId")
 private Chambre chambre;

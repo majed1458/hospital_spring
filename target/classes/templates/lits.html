@@ -141,7 +141,7 @@ th:href="@{~/doctor/allDoctors}"
                   </div>
                  
                  
-              <div class="project__element project__setting"  th:if="${param.id}" >
+              <div class="project__element project__setting"   >
                   
                   
                   
@@ -188,7 +188,7 @@ th:href="@{~/doctor/allDoctors}"
                   <p th:text="${pa}" ></p>
                   </div>
                   <div class=""  th:if="${param.id}" >
-                     <form method="post" th:action="@{~/patient/affecteraunlit(id=${param.id},id2=${paa})}"  class="search">                
+                     <form method="post" th:action="@{~/patient/affecteraunlit(id=${param.id},id2=${paa[0]})}"  class="search">                
                     <button
                       class=""
                       type="submit"     
