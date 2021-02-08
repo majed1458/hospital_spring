@@ -120,8 +120,7 @@ pa.setPrenom(l.getPatient().getPrenom());
 	@RequestMapping(value="/afficherChambre", method=RequestMethod.GET)
 	public String afficherChambre(Model model,@RequestParam(name="id", defaultValue="1")long id) {
 		Chambre c = cr.findById(id).get();
-		model.addAttribute("chambre", c);		
-		System.out.println(c);
+		model.addAttribute("chambre", c);
 		return "afficher_chambre.html";		
 	}
 	@RequestMapping(value="/modifier", method=RequestMethod.POST)
